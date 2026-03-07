@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RusLyn Pine Cabin</title>
+    <title>RusLyn Pines Cabin</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -27,7 +27,6 @@
             color: #2c2416;
         }
 
-        /* Header */
         header {
             background: var(--pine);
             background-image: linear-gradient(135deg, #1e3420 0%, #2d4a2d 50%, #3a5c3a 100%);
@@ -44,17 +43,34 @@
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
-        .cabin-icon {
-            font-size: 48px;
-            display: block;
+        .header-scene {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 4px;
             margin-bottom: 10px;
+        }
+
+        .cabin-icon {
+            font-size: 52px;
             animation: sway 4s ease-in-out infinite;
         }
 
-        @keyframes sway {
-            0%, 100% { transform: rotate(-2deg); }
-            50% { transform: rotate(2deg); }
+        .tree-left, .tree-right {
+            font-size: 44px;
+            animation: sway 5s ease-in-out infinite;
         }
+
+        .tree-left.small, .tree-right.small {
+            font-size: 32px;
+            animation: sway 6s ease-in-out infinite reverse;
+        }
+
+        .tree-left { animation-delay: 0.3s; }
+        .tree-left.small { animation-delay: 0.8s; }
+        .tree-right { animation-delay: 0.6s; }
+        .tree-right.small { animation-delay: 1.1s; }
+        @keyframes sway { 0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)} }
 
         header h1 {
             font-family: 'Playfair Display', serif;
@@ -73,16 +89,15 @@
             font-weight: 300;
         }
 
-        /* Nav */
         nav {
             background: var(--bark);
-            padding: 0;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 0;
             box-shadow: 0 3px 12px var(--shadow);
         }
+
+        .nav-break { flex-basis: 100%; height: 0; border-top: 1px solid rgba(255,255,255,0.15); }
 
         nav a {
             text-decoration: none;
@@ -105,14 +120,8 @@
             color: #fff;
         }
 
-        /* Main */
-        main {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 30px 20px 60px;
-        }
+        main { max-width: 740px; margin: 0 auto; padding: 30px 20px 60px; }
 
-        /* Section panels */
         .section-panel {
             background: #fff;
             border-radius: 4px;
@@ -123,33 +132,71 @@
             animation: fadeUp 0.5s ease both;
         }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(18px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        @keyframes fadeUp { from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)} }
         .section-panel.hidden { display: none; }
 
         .section-panel h2 {
             font-family: 'Playfair Display', serif;
             font-size: 1.6rem;
             color: var(--pine);
-            margin-bottom: 22px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .section-panel h2 .icon { font-size: 1.3rem; }
+        .season-selector { display: flex; gap: 12px; margin-bottom: 20px; }
 
-        /* Checklist */
-        .checklist { margin-bottom: 24px; }
+        .season-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid var(--smoke);
+            background: var(--cream);
+            border-radius: 4px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #7a6a50;
+        }
+
+        .season-btn:hover { border-color: var(--pine); }
+        .season-btn.active-summer { background: #fff8e6; border-color: var(--amber); color: var(--bark); }
+        .season-btn.active-winter { background: #e8f0f8; border-color: #4a7aaa; color: #2a4a6a; }
+
+        .notice-box {
+            background: #fff8e6;
+            border: 1.5px solid var(--amber);
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #5a4010;
+        }
+
+        .notice-box strong { display: block; margin-bottom: 4px; color: var(--bark); }
+
+        .step-header {
+            background: var(--pine);
+            color: var(--cream);
+            padding: 8px 14px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 20px 0 10px;
+        }
 
         .checklist-item {
             display: flex;
-            align-items: center;
-            padding: 12px 16px;
-            margin-bottom: 8px;
+            align-items: flex-start;
+            padding: 11px 14px;
+            margin-bottom: 6px;
             border-radius: 4px;
             border: 1.5px solid var(--smoke);
             background: var(--cream);
@@ -158,41 +205,25 @@
             user-select: none;
         }
 
-        .checklist-item:hover {
-            border-color: var(--pine);
-            background: #eef5ee;
-            transform: translateX(3px);
-        }
-
-        .checklist-item.checked {
-            background: #eef5ee;
-            border-color: var(--pine);
-        }
-
-        .checklist-item.checked label {
-            text-decoration: line-through;
-            color: #7a9a7a;
-        }
+        .checklist-item:hover { border-color: var(--pine); background: #eef5ee; transform: translateX(3px); }
+        .checklist-item.checked { background: #eef5ee; border-color: var(--pine); }
+        .checklist-item.checked label { text-decoration: line-through; color: #7a9a7a; }
+        .checklist-item.hidden-item { display: none; }
 
         .checklist-item input[type="checkbox"] {
             appearance: none;
-            width: 20px;
-            height: 20px;
+            width: 20px; height: 20px; min-width: 20px;
             border: 2px solid #aab8aa;
             border-radius: 3px;
-            margin-right: 14px;
-            flex-shrink: 0;
+            margin-right: 12px; margin-top: 1px;
             cursor: pointer;
             background: white;
             transition: background 0.2s, border-color 0.2s;
             position: relative;
+            flex-shrink: 0;
         }
 
-        .checklist-item input[type="checkbox"]:checked {
-            background: var(--pine);
-            border-color: var(--pine);
-        }
-
+        .checklist-item input[type="checkbox"]:checked { background: var(--pine); border-color: var(--pine); }
         .checklist-item input[type="checkbox"]:checked::after {
             content: '';
             position: absolute;
@@ -203,432 +234,736 @@
             transform: rotate(45deg);
         }
 
-        .checklist-item label {
-            font-size: 0.97rem;
-            cursor: pointer;
-            color: #2c2416;
-            font-weight: 400;
-            transition: color 0.2s;
+        .checklist-item label { font-size: 0.93rem; cursor: pointer; color: #2c2416; line-height: 1.5; }
+
+        .item-num {
+            font-size: 0.75rem; font-weight: 700; color: #aaa;
+            margin-right: 8px; min-width: 32px; margin-top: 2px; flex-shrink: 0;
         }
 
-        /* Progress bar */
-        .progress-wrap {
-            margin-bottom: 24px;
+        .season-tag {
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 1px;
+            padding: 2px 6px; border-radius: 2px; margin-left: 6px;
+            vertical-align: middle; white-space: nowrap;
         }
 
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            color: #7a6a50;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 7px;
+        .tag-summer { background: #fff0c0; color: #8a6000; }
+        .tag-winter { background: #d0e8ff; color: #1a4a7a; }
+
+        .progress-wrap { margin-bottom: 20px; }
+        .progress-label { display: flex; justify-content: space-between; font-size: 0.8rem; color: #7a6a50; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 7px; }
+        .progress-bar { height: 8px; background: var(--smoke); border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--pine), #4a8a4a); border-radius: 4px; transition: width 0.4s ease; width: 0%; }
+
+        .party-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+        .party-grid .full-width { grid-column: 1 / -1; }
+
+        .field-group label {
+            display: block; font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase; color: #7a6a50; margin-bottom: 5px;
         }
 
-        .progress-bar {
-            height: 8px;
-            background: var(--smoke);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--pine), #4a8a4a);
-            border-radius: 4px;
-            transition: width 0.4s ease;
-            width: 0%;
-        }
-
-        /* Signature */
-        .signature-row {
-            margin-bottom: 22px;
-        }
-
-        .signature-row label {
-            display: block;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #7a6a50;
-            margin-bottom: 7px;
-        }
-
-        .signature-row input[type="text"] {
-            width: 100%;
-            padding: 11px 14px;
-            border: 1.5px solid var(--smoke);
-            border-radius: 4px;
-            font-family: 'Lato', sans-serif;
-            font-size: 1rem;
-            color: #2c2416;
-            background: var(--cream);
+        .field-group input {
+            width: 100%; padding: 10px 12px;
+            border: 1.5px solid var(--smoke); border-radius: 4px;
+            font-family: 'Lato', sans-serif; font-size: 0.95rem;
+            color: #2c2416; background: var(--cream);
             transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-        .signature-row input[type="text"]:focus {
-            outline: none;
-            border-color: var(--pine);
-            box-shadow: 0 0 0 3px rgba(45,74,45,0.12);
+        .field-group input:focus { outline: none; border-color: var(--pine); box-shadow: 0 0 0 3px rgba(45,74,45,0.12); }
+
+        .yn-row {
+            display: flex; align-items: center; gap: 10px;
+            padding: 11px 14px; margin-bottom: 6px;
+            border-radius: 4px; border: 1.5px solid var(--smoke); background: var(--cream);
         }
 
-        /* Buttons */
+        .yn-row label { font-size: 0.93rem; flex: 1; line-height: 1.4; }
+        .yn-btns { display: flex; gap: 6px; flex-shrink: 0; }
+
+        .yn-btn {
+            padding: 4px 14px; border: 1.5px solid var(--smoke); border-radius: 3px;
+            background: white; font-family: 'Lato', sans-serif;
+            font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.15s;
+        }
+
+        .yn-btn.yes-active { background: #eef5ee; border-color: var(--pine); color: var(--pine); }
+        .yn-btn.no-active { background: #fdf0f0; border-color: #c0392b; color: #c0392b; }
+
+        .notes-field {
+            width: 100%; padding: 10px 12px;
+            border: 1.5px solid var(--smoke); border-radius: 4px;
+            font-family: 'Lato', sans-serif; font-size: 0.9rem;
+            color: #2c2416; background: var(--cream);
+            resize: vertical; min-height: 60px; margin-top: 6px;
+        }
+
+        .notes-field:focus { outline: none; border-color: var(--pine); }
+
         .submit-btn {
-            background: var(--pine);
-            color: white;
-            padding: 13px 32px;
-            border: none;
-            border-radius: 4px;
-            font-family: 'Lato', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
-            box-shadow: 0 2px 8px rgba(45,74,45,0.2);
+            background: var(--pine); color: white;
+            padding: 13px 32px; border: none; border-radius: 4px;
+            font-family: 'Lato', sans-serif; font-size: 0.85rem;
+            font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            cursor: pointer; transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(45,74,45,0.2); margin-top: 12px;
         }
 
-        .submit-btn:hover {
-            background: #1e3420;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(45,74,45,0.28);
-        }
-
+        .submit-btn:hover { background: #1e3420; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(45,74,45,0.28); }
         .submit-btn:active { transform: translateY(0); }
 
-        /* Rules */
         .rules-list { list-style: none; }
-
-        .rules-list li {
-            padding: 11px 0;
-            border-bottom: 1px solid var(--smoke);
-            font-size: 0.97rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
+        .rules-list li { padding: 11px 0; border-bottom: 1px solid var(--smoke); font-size: 0.95rem; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
         .rules-list li:last-child { border-bottom: none; }
+        .rules-list li::before { content: '🌲'; font-size: 0.9rem; flex-shrink: 0; margin-top: 2px; }
 
-        .rules-list li::before {
-            content: '🌲';
-            font-size: 0.9rem;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        /* Contact */
-        .contact-card {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .contact-row {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 14px 16px;
-            background: var(--cream);
-            border-radius: 4px;
-            border: 1.5px solid var(--smoke);
-        }
-
+        .contact-card { display: flex; flex-direction: column; gap: 14px; }
+        .contact-row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--cream); border-radius: 4px; border: 1.5px solid var(--smoke); }
         .contact-row .icon { font-size: 1.4rem; flex-shrink: 0; }
+        .contact-row .clabel { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #7a6a50; font-weight: 700; }
+        .contact-row .cvalue { font-size: 0.97rem; color: var(--pine); }
 
-        .contact-row .label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #7a6a50;
-            font-weight: 700;
-        }
-
-        .contact-row .value {
-            font-size: 0.97rem;
-            color: var(--pine);
-            font-weight: 400;
-        }
-
-        /* More */
-        .more-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-        }
-
-        .more-card {
-            background: var(--cream);
-            border: 1.5px solid var(--smoke);
-            border-radius: 4px;
-            padding: 18px 16px;
-            text-align: center;
-            cursor: pointer;
-            transition: border-color 0.2s, transform 0.15s, background 0.2s;
-        }
-
-        .more-card:hover {
-            border-color: var(--pine);
-            background: #eef5ee;
-            transform: translateY(-2px);
-        }
-
+        .more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .more-card { background: var(--cream); border: 1.5px solid var(--smoke); border-radius: 4px; padding: 18px 16px; text-align: center; cursor: pointer; transition: border-color 0.2s, transform 0.15s, background 0.2s; }
+        .more-card:hover { border-color: var(--pine); background: #eef5ee; transform: translateY(-2px); }
         .more-card .emoji { font-size: 2rem; display: block; margin-bottom: 8px; }
-        .more-card .title { font-weight: 700; font-size: 0.9rem; color: var(--pine); }
-        .more-card .desc { font-size: 0.8rem; color: #7a6a50; margin-top: 3px; }
+        .more-card .mtitle { font-weight: 700; font-size: 0.9rem; color: var(--pine); }
+        .more-card .mdesc { font-size: 0.8rem; color: #7a6a50; margin-top: 3px; }
 
-        /* Success toast */
         .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
+            position: fixed; bottom: 30px; left: 50%;
             transform: translateX(-50%) translateY(80px);
-            background: var(--pine);
-            color: white;
-            padding: 14px 28px;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            background: var(--pine); color: white;
+            padding: 14px 28px; border-radius: 4px;
+            font-size: 0.9rem; font-weight: 700;
             box-shadow: 0 4px 20px rgba(0,0,0,0.2);
             transition: transform 0.35s ease, opacity 0.35s ease;
-            opacity: 0;
-            z-index: 999;
+            opacity: 0; z-index: 999; white-space: nowrap;
         }
 
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
+        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.78rem;
-            color: #a89878;
-            letter-spacing: 1px;
-        }
+        footer { text-align: center; padding: 20px; font-size: 0.78rem; color: #a89878; letter-spacing: 1px; }
 
-        @media (max-width: 480px) {
-            .section-panel { padding: 22px 18px; }
-            nav a { font-size: 0.75rem; padding: 12px 12px; }
-            .more-grid { grid-template-columns: 1fr; }
+        @media (max-width: 520px) {
+            .section-panel { padding: 22px 16px; }
+            nav a { font-size: 0.75rem; padding: 12px 10px; }
+            .more-grid, .party-grid { grid-template-columns: 1fr; }
+            .party-grid .full-width { grid-column: 1; }
+            .yn-row { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <span class="cabin-icon">🏕️</span>
-    <h1>RusLyn Pine Cabin</h1>
-    <p>Wilderness Retreat &nbsp;·&nbsp; Member Portal</p>
+    <div class="header-scene">
+        <span class="tree-left">🌲</span>
+        <span class="tree-left small">🌲</span>
+        <span class="cabin-icon">🏡</span>
+        <span class="tree-right small">🌲</span>
+        <span class="tree-right">🌲</span>
+    </div>
+    <h1>RusLyn Pines Cabin</h1>
+    <p>Margetts Family Retreat Portal</p>
 </header>
 
 <nav>
-    <a href="#" onclick="showSection('open')" class="active">🔓 Open Cabin</a>
-    <a href="#" onclick="showSection('close')">🔒 Close Cabin</a>
+    <a href="#" onclick="showSection('reservation')" class="active">📝 Reservation Info</a>
     <a href="#" onclick="showSection('rules')">📋 Rules</a>
     <a href="#" onclick="showSection('contact')">📞 Contact</a>
     <a href="#" onclick="showSection('more')">⋯ More</a>
+    <div class="nav-break"></div>
+    <a href="#" onclick="showSection('open')">🔓 Open Cabin</a>
+    <a href="#" onclick="showSection('close')">🔒 Close Cabin</a>
 </nav>
 
 <main>
 
-    <!-- OPEN CABIN -->
-    <div id="section-open" class="section-panel">
-        <h2><span class="icon">🔓</span> Opening Checklist</h2>
-        <div class="progress-wrap">
-            <div class="progress-label">
-                <span>Progress</span>
-                <span id="open-count">0 / 5</span>
-            </div>
-            <div class="progress-bar"><div class="progress-fill" id="open-progress"></div></div>
+<!-- ===== RESERVATION INFORMATION ===== -->
+<div id="section-reservation" class="section-panel">
+    <h2><span>📝</span> Reservation Information</h2>
+    <div class="party-grid">
+        <div class="field-group full-width">
+            <label>Reservation Holder Name</label>
+            <input type="text" id="res-name" placeholder="Full name">
         </div>
-        <div class="checklist" id="open-checklist">
-            <div class="checklist-item" onclick="toggleCheck(this)">
-                <input type="checkbox" id="water"><label for="water">Turn on the Water</label>
-            </div>
-            <div class="checklist-item" onclick="toggleCheck(this)">
-                <input type="checkbox" id="power"><label for="power">Turn on the Power</label>
-            </div>
-            <div class="checklist-item" onclick="toggleCheck(this)">
-                <input type="checkbox" id="windows"><label for="windows">Unlock Windows and Doors</label>
-            </div>
-            <div class="checklist-item" onclick="toggleCheck(this)">
-                <input type="checkbox" id="heating"><label for="heating">Check Heating System</label>
-            </div>
-            <div class="checklist-item" onclick="toggleCheck(this)">
-                <input type="checkbox" id="cleaning"><label for="cleaning">Inspect and Clean Common Areas</label>
-            </div>
+        <div class="field-group">
+            <label>Number in Party</label>
+            <input type="number" id="res-party" placeholder="0" min="1">
         </div>
-        <div class="signature-row">
-            <label for="open-sig">Signature</label>
-            <input type="text" id="open-sig" placeholder="Enter your full name">
+        <div class="field-group">
+            <label>Number of Vehicles</label>
+            <input type="number" id="res-vehicles" placeholder="0" min="1">
         </div>
-        <button class="submit-btn" onclick="submitChecklist('open')">Submit Opening Report</button>
+        <div class="field-group">
+            <label>Arrival Date</label>
+            <input type="date" id="res-arrive-date">
+        </div>
+        <div class="field-group">
+            <label>Arrival Time</label>
+            <input type="time" id="res-arrive-time">
+        </div>
+        <div class="field-group">
+            <label>Departure Date</label>
+            <input type="date" id="res-depart-date">
+        </div>
+        <div class="field-group">
+            <label>Departure Time</label>
+            <input type="time" id="res-depart-time">
+        </div>
+    </div>
+    <div class="notice-box">
+        <strong>📌 Key Fob Reminder</strong>
+        Keys to the Bunkhouse and Garage are on a key fob hung on the wall by the back entrance door. The Riding Lawnmower key fob is also on the wall by the entrance door. Both key fobs must stay at the Cabin. Replacement cost: $75 each.
+    </div>
+    <button class="submit-btn" onclick="submitReservation()">Save Reservation Info</button>
+</div>
+
+<!-- ===== OPEN CABIN ===== -->
+<div id="section-open" class="section-panel hidden">
+    <h2><span>🔓</span> Opening Checklist</h2>
+
+    <div class="notice-box">
+        <strong>⚠️ Important Reminder</strong>
+        No matter how often you have visited, always follow every applicable step — things at the Cabin change. Failure to follow and document each step may result in financial consequences or loss of Cabin privileges.
     </div>
 
-    <!-- CLOSE CABIN -->
-    <div id="section-close" class="section-panel hidden">
-        <h2><span class="icon">🔒</span> Closing Checklist</h2>
-        <div class="progress-wrap">
-            <div class="progress-label">
-                <span>Progress</span>
-                <span id="close-count">0 / 6</span>
+    <div class="season-selector">
+        <button class="season-btn" id="open-summer-btn" onclick="setSeason('open','summer')">☀️ Summer</button>
+        <button class="season-btn" id="open-winter-btn" onclick="setSeason('open','winter')">❄️ Winter</button>
+    </div>
+
+    <div id="open-season-prompt" style="color:#a89878;font-size:0.9rem;margin-bottom:16px;">👆 Select your season above to begin.</div>
+
+    <div id="open-body" style="display:none;">
+        <div class="step-header">Reservation Information</div>
+        <div class="party-grid">
+            <div class="field-group full-width">
+                <label>Reservation Holder Name</label>
+                <input type="text" id="open-name" placeholder="Full name">
             </div>
+            <div class="field-group">
+                <label>Number in Party</label>
+                <input type="number" id="open-party-num" placeholder="0" min="1">
+            </div>
+            <div class="field-group">
+                <label>Number of Vehicles</label>
+                <input type="number" id="open-vehicles" placeholder="0" min="1">
+            </div>
+            <div class="field-group">
+                <label>Arrival Date</label>
+                <input type="date" id="open-arrive-date">
+            </div>
+            <div class="field-group">
+                <label>Arrival Time</label>
+                <input type="time" id="open-arrive-time">
+            </div>
+            <div class="field-group">
+                <label>Departure Date</label>
+                <input type="date" id="open-depart-date">
+            </div>
+            <div class="field-group">
+                <label>Departure Time</label>
+                <input type="time" id="open-depart-time">
+            </div>
+        </div>
+
+        <div class="step-header">Always — Arrival Inspection</div>
+        <div class="yn-row">
+            <label>Was Cabin, Bunkhouse, Garage and property <strong>clean</strong>?</label>
+            <div class="yn-btns">
+                <button class="yn-btn" onclick="toggleYN(this,'yes','open-clean-notes')">YES</button>
+                <button class="yn-btn" onclick="toggleYN(this,'no','open-clean-notes')">NO</button>
+            </div>
+        </div>
+        <textarea class="notes-field" id="open-clean-notes" placeholder="List problems discovered..." style="display:none;"></textarea>
+
+        <div class="yn-row">
+            <label>Was Cabin, Bunkhouse, Garage and property <strong>damage free</strong>?</label>
+            <div class="yn-btns">
+                <button class="yn-btn" onclick="toggleYN(this,'yes','open-damage-notes')">YES</button>
+                <button class="yn-btn" onclick="toggleYN(this,'no','open-damage-notes')">NO</button>
+            </div>
+        </div>
+        <textarea class="notes-field" id="open-damage-notes" placeholder="List damage found. Text photos to Dave Johnson (801-599-9634) and Russ Margetts (801-891-3100)." style="display:none;"></textarea>
+
+        <div class="yn-row">
+            <label>Was <strong>Bunkhouse &amp; Garage key fob</strong> on wall by back door?</label>
+            <div class="yn-btns">
+                <button class="yn-btn" onclick="toggleYN(this,'yes',null)">YES</button>
+                <button class="yn-btn" onclick="toggleYN(this,'no',null)">NO</button>
+            </div>
+        </div>
+
+        <div class="yn-row">
+            <label>Was <strong>Riding Lawnmower key fob</strong> on wall by back door?</label>
+            <div class="yn-btns">
+                <button class="yn-btn" onclick="toggleYN(this,'yes',null)">YES</button>
+                <button class="yn-btn" onclick="toggleYN(this,'no',null)">NO</button>
+            </div>
+        </div>
+
+        <div class="progress-wrap" style="margin-top:20px;">
+            <div class="progress-label"><span>Checklist Progress</span><span id="open-count">0 / 0</span></div>
+            <div class="progress-bar"><div class="progress-fill" id="open-progress"></div></div>
+        </div>
+
+        <div class="step-header">Step 1 — Water &amp; Plumbing</div>
+        <div id="open-checklist">
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">1.1</span>
+                <label>Turn on main water valve at RusLyn Pines entrance gate.</label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">1.2</span>
+                <label>Close water heater tank drain valve. Find green hose at base of tank; use screwdriver on round black spud; turn <strong>clockwise</strong> to close. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">1.3</span>
+                <label>SLOWLY open the water main valve (center valve under kitchen sink cupboards to the left) until it stops. When water main is open, drains should be closed.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">1.4</span>
+                <label>Close the drain valves (left and right of water main valve, under kitchen sink cupboards).</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">1.5</span>
+                <label>Open all faucets in bathroom and kitchen. When water runs steady from cold faucets, close cold faucets only.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">1.6</span>
+                <label>When water runs steady from hot water faucets, close them. Hot water tank is now full.</label>
+            </div>
+
+            <div class="step-header">Step 2 — Power &amp; Heating</div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">2.1</span>
+                <label>Turn on power to furnace (switch on right side of furnace). <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">2.2</span>
+                <label>Open window in furnace room 4–6" to provide oxygen for furnace. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">2.3</span>
+                <label>Turn thermostat up to 70°. Can take up to two hours to fully heat. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">2.4</span>
+                <label>Make sure all bedroom doors are open for circulation throughout Cabin. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">2.5</span>
+                <label>Once hot water tank is full (see 1.6), turn on water heater power and stove breaker on electrical panel in broom closet next to fridge. Breakers are labeled.</label>
+            </div>
+            <div class="checklist-item" data-season="summer" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">2.5.1</span>
+                <label>Hot water tank should be full already. Verify by turning on hot water faucet. <span class="season-tag tag-summer">☀️ SUMMER</span></label>
+            </div>
+
+            <div class="step-header">Step 3 — Household Setup</div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">3.1</span>
+                <label>Put all perishable food in fridges.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">3.2</span>
+                <label>Secure all non-perishable food in closed containers or on counter in great room. Rodents are quickly attracted to easily accessible food.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">3.3</span>
+                <label>Using "third hand" garbage bag holder on back porch, establish a central trash collection spot. Trash bags are in cupboard closest to fridge on back porch.</label>
+            </div>
+
+            <div class="step-header">Step 4 — Mow the Lawn</div>
+            <div class="checklist-item" data-season="summer" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">4.1</span>
+                <label>During your stay, mow the lawn in the meadow and around Cabin, Bunkhouse and Garage using mowers in Garage. <span class="season-tag tag-summer">☀️ SUMMER</span></label>
+            </div>
+            <div class="checklist-item" data-season="summer" onclick="toggleCheck(this,'open')">
+                <input type="checkbox"><span class="item-num">4.2</span>
+                <label>If you brought a personal gas can to the Cabin, you must take it home with you. <span class="season-tag tag-summer">☀️ SUMMER</span></label>
+            </div>
+        </div>
+
+        <button class="submit-btn" onclick="submitChecklist('open')">Submit Opening Report</button>
+    </div>
+</div>
+
+<!-- ===== CLOSE CABIN ===== -->
+<div id="section-close" class="section-panel hidden">
+    <h2><span>🔒</span> Closing Checklist</h2>
+
+    <div class="notice-box">
+        <strong>⚠️ Important Reminder</strong>
+        Follow every applicable step for your season. Failure to follow these instructions can result in Cabin damage, costly repairs, and loss of Cabin privileges.
+    </div>
+
+    <div class="season-selector">
+        <button class="season-btn" id="close-summer-btn" onclick="setSeason('close','summer')">☀️ Summer</button>
+        <button class="season-btn" id="close-winter-btn" onclick="setSeason('close','winter')">❄️ Winter</button>
+    </div>
+
+    <div id="close-season-prompt" style="color:#a89878;font-size:0.9rem;margin-bottom:16px;">👆 Select your season above to begin.</div>
+
+    <div id="close-body" style="display:none;">
+        <div class="progress-wrap">
+            <div class="progress-label"><span>Checklist Progress</span><span id="close-count">0 / 0</span></div>
             <div class="progress-bar"><div class="progress-fill" id="close-progress"></div></div>
         </div>
-        <div class="checklist" id="close-checklist">
-            <div class="checklist-item" onclick="toggleCheck(this)">
-                <input type="checkbox" id="c-water"><label for="c-water">Shut Off Water Supply</label>
+
+        <div class="step-header">Step 1 — Clean Up</div>
+        <div id="close-checklist">
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.1</span>
+                <label>Remove all personal items from Cabin, Bunkhouse, Garage and property. Check under beds, behind furniture, on mantel, etc.</label>
             </div>
-            <div class="checklist-item" onclick="toggleCheck(this)">
-                <input type="checkbox" id="c-power"><label for="c-power">Turn Off All Power</label>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.2</span>
+                <label>Clean all dishes, silverware, glasses and pans; return to proper cabinet/drawer.</label>
             </div>
-            <div class="checklist-item" onclick="toggleCheck(this)">
-                <input type="checkbox" id="c-windows"><label for="c-windows">Lock All Windows and Doors</label>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.3</span>
+                <label>Clean out all food and drinks from both fridges, all countertops and back porch. Do not leave food anywhere — rodents are quickly attracted.</label>
             </div>
-            <div class="checklist-item" onclick="toggleCheck(this)">
-                <input type="checkbox" id="c-trash"><label for="c-trash">Remove All Trash</label>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.4</span>
+                <label>Thoroughly clean insides and outsides of both fridges. Cleaning supplies in cupboard closest to fridge on porch.</label>
             </div>
-            <div class="checklist-item" onclick="toggleCheck(this)">
-                <input type="checkbox" id="c-food"><label for="c-food">Clear and Clean Refrigerator</label>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.5</span>
+                <label>Thoroughly clean stove top, oven, barbecue grill (if used) and microwave.</label>
             </div>
-            <div class="checklist-item" onclick="toggleCheck(this)">
-                <input type="checkbox" id="c-heating"><label for="c-heating">Turn Off Heating / Propane</label>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.6</span>
+                <label>Empty garbage from bedrooms, back porch, great room (check under tables and furniture) and Bunkhouse. Consolidate all garbage into one bag.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.7</span>
+                <label>Empty the vacuum into garbage (in case previous guests didn't).</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.8</span>
+                <label>Wipe down all tabletops and chairs in both Cabin and Bunkhouse.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.9</span>
+                <label>Vacuum all carpets and sweep all floors in Cabin and Bunkhouse. Clean under furniture where crumbs, popcorn, candy wrappers accumulate.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.10</span>
+                <label>Empty the vacuum into garbage again.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.11</span>
+                <label>Wash out vacuum filter and leave on counter to dry.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.12</span>
+                <label>Clean up Garage — leave it like you found it (or better). Don't leave gas cans you brought!</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.13</span>
+                <label>Walk around and pick up any garbage from property; add to consolidated garbage bag.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">1.14</span>
+                <label>⚠️ HAUL ALL GARBAGE HOME WITH YOU — DO NOT LEAVE IT IN GARAGE.</label>
+            </div>
+
+            <div class="step-header">Step 2 — Power &amp; Heating</div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">2.1</span>
+                <label>Turn off power to stove and water heater. Breakers on electrical panel in broom closet next to fridge. Breakers are labeled.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">2.2</span>
+                <label>Turn off furnace. Switch on right side of furnace — push down (spring loaded).</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">2.3</span>
+                <label>Turn off fireplace with remote. Replace remote on mantle.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">2.4</span>
+                <label>Replace all remotes to the mantle in the Cabin.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">2.5</span>
+                <label>Replace all remotes to the drawer in the heater in the Bunkhouse.</label>
+            </div>
+
+            <div class="step-header">Step 3 — Water &amp; Plumbing</div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">3.1</span>
+                <label>⚠️ TURN OFF MAIN WATER VALVE AT RUSLYN PINES ENTRANCE GATE BEFORE ANY OTHER VALVES. This removes pressure and reduces freeze risk.</label>
+            </div>
+            <div class="checklist-item" data-season="summer" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">3.2</span>
+                <label>Close main water valve under sink. Leave drains closed. <span class="season-tag tag-summer">☀️ SUMMER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">3.2.1</span>
+                <label>FIRST close Main Water Valve under sink, THEN open both Drain Valves to drain water from lines. When water main is closed, drains should be open. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">3.3</span>
+                <label>Open water heater tank drain valve. Find green hose at base of tank; use screwdriver on round black spud; turn <strong>counterclockwise</strong> to open. You should hear water draining. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">3.4</span>
+                <label>Open all faucets in kitchen and bathroom, including the shower. Hang shower nozzle to shower floor. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">3.5</span>
+                <label>Locate kitchen sink sprayer under sink. Squeeze sprayer to drain all water from the line into a container until it stops dripping. Pour container into kitchen sink. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">3.6</span>
+                <label>Using <strong>PINK RV ANTIFREEZE ONLY</strong>, put ½ cup in kitchen and bathroom sink drains. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">3.7</span>
+                <label>Flush toilet — hold lever 1 minute to remove as much water from bowl and tank as possible. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">3.8</span>
+                <label>Using pump and bucket next to toilet, pump water from toilet <strong>BOWL</strong> until it won't suck anymore. Pour pumped water into shower drain. Failure to drain WILL result in a frozen toilet. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">3.9</span>
+                <label>Using pump and bucket, pump water from toilet <strong>TANK</strong> until it won't suck anymore. Only ½ inch of water should remain. Pour pumped water into shower drain. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">3.10</span>
+                <label>Using <strong>PINK RV ANTIFREEZE ONLY</strong>, put 2 cups in toilet bowl and 2 cups in toilet tank. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">3.11</span>
+                <label>Using <strong>PINK RV ANTIFREEZE ONLY</strong>, put 1 cup in shower drain. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">3.12</span>
+                <label>Take a picture of pumped/antifreezed toilet bowl and toilet tank. <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+
+            <div class="step-header">Step 4 — Security &amp; Key Fobs</div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">4.1</span>
+                <label>Close and lock all windows.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">4.2</span>
+                <label>Close all curtains.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">4.3</span>
+                <label>Make sure all bedroom doors are left open.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">4.4</span>
+                <label>Lock "river side" door.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">4.5</span>
+                <label>Lock Garage and Bunkhouse using key fob by back door. ⚠️ REPLACE KEY FOB BACK ON WALL — DO NOT TAKE HOME. Replacement cost: $75.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">4.6</span>
+                <label>Ensure Riding Lawnmower key fob is hung on wall by back door. ⚠️ DO NOT TAKE HOME. Replacement cost: $75.</label>
+            </div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">4.7</span>
+                <label>Lock digital lock on backdoor: Touch # (lights up) → Touch # again and hold to lock. You will hear it lock — pull handle to verify.</label>
+            </div>
+
+            <div class="step-header">Step 5 — Send Pictures</div>
+            <div class="checklist-item" data-season="both" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">5.1</span>
+                <label>Take picture of completed Opening and Closing Checklist and text to Dave Johnson (801-599-9634) and Russ Margetts (801-891-3100).</label>
+            </div>
+            <div class="checklist-item" data-season="winter" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">5.2</span>
+                <label>Text pictures of toilet bowl, toilet tank and inside of Garage to Dave Johnson (801-599-9634) and Russ Margetts (801-891-3100). <span class="season-tag tag-winter">❄️ WINTER</span></label>
+            </div>
+            <div class="checklist-item" data-season="summer" onclick="toggleCheck(this,'close')">
+                <input type="checkbox"><span class="item-num">5.3</span>
+                <label>Text picture of inside Garage to Dave Johnson (801-599-9634) and Russ Margetts (801-891-3100). <span class="season-tag tag-summer">☀️ SUMMER</span></label>
             </div>
         </div>
-        <div class="signature-row">
-            <label for="close-sig">Signature</label>
+
+        <div class="field-group" style="margin-top:16px;">
+            <label>Reservation Holder Name (Signature)</label>
             <input type="text" id="close-sig" placeholder="Enter your full name">
         </div>
         <button class="submit-btn" onclick="submitChecklist('close')">Submit Closing Report</button>
     </div>
+</div>
 
-    <!-- RULES -->
-    <div id="section-rules" class="section-panel hidden">
-        <h2><span class="icon">📋</span> Cabin Rules</h2>
-        <ul class="rules-list">
-            <li>Respect quiet hours between 10 PM and 8 AM.</li>
-            <li>No smoking inside the cabin at any time.</li>
-            <li>Pets are welcome but must be kept on a leash outdoors.</li>
-            <li>Leave the cabin cleaner than you found it.</li>
-            <li>Report any damages to the owner immediately.</li>
-            <li>Do not cut live trees or damage vegetation.</li>
-            <li>Campfires must be fully extinguished before sleeping.</li>
-            <li>Maximum occupancy: 8 people.</li>
-        </ul>
-    </div>
 
-    <!-- CONTACT -->
-    <div id="section-contact" class="section-panel hidden">
-        <h2><span class="icon">📞</span> Contact Owner</h2>
-        <div class="contact-card">
-            <div class="contact-row">
-                <span class="icon">👤</span>
-                <div><div class="label">Owner</div><div class="value">RusLyn Cabin Management</div></div>
-            </div>
-            <div class="contact-row">
-                <span class="icon">📱</span>
-                <div><div class="label">Phone</div><div class="value">(555) 867-5309</div></div>
-            </div>
-            <div class="contact-row">
-                <span class="icon">✉️</span>
-                <div><div class="label">Email</div><div class="value">owner@ruslyncabin.com</div></div>
-            </div>
-            <div class="contact-row">
-                <span class="icon">🕐</span>
-                <div><div class="label">Response Hours</div><div class="value">Mon – Fri, 9 AM – 6 PM</div></div>
-            </div>
+<!-- ===== RULES ===== -->
+<div id="section-rules" class="section-panel hidden">
+    <h2><span>📋</span> Cabin Rules</h2>
+    <ul class="rules-list">
+        <li>No matter how often you have visited, always follow every applicable checklist step — things at the Cabin change.</li>
+        <li>Each instruction is critical. Failure to follow and document steps may result in financial consequences or loss of Cabin privileges.</li>
+        <li>Keys to the Bunkhouse and Garage are on a key fob by the back entrance door. This key fob must stay at the Cabin. Replacement cost: $75.</li>
+        <li>The Riding Lawnmower key fob must stay at the Cabin. Replacement cost: $75.</li>
+        <li>Do not leave food on any surface — rodents are quickly attracted to accessible food.</li>
+        <li>Haul all garbage home with you — do not leave it in the Garage.</li>
+        <li>Campfires must be fully extinguished before sleeping or leaving.</li>
+        <li>Do not cut live trees or damage vegetation on the property.</li>
+        <li>Report all damages immediately with photos to Dave Johnson (801-599-9634) and Russ Margetts (801-891-3100).</li>
+        <li>Use PINK RV ANTIFREEZE ONLY in drains and toilet during winter closing.</li>
+    </ul>
+</div>
+
+<!-- ===== CONTACT ===== -->
+<div id="section-contact" class="section-panel hidden">
+    <h2><span>📞</span> Contact</h2>
+    <div class="contact-card">
+        <div class="contact-row">
+            <span class="icon">👤</span>
+            <div><div class="clabel">Dave Johnson</div><div class="cvalue">📱 801-599-9634</div></div>
+        </div>
+        <div class="contact-row">
+            <span class="icon">👤</span>
+            <div><div class="clabel">Russ Margetts</div><div class="cvalue">📱 801-891-3100</div></div>
+        </div>
+        <div class="notice-box" style="margin-top:4px;">
+            Text arrival damage photos and departure checklist photos to both contacts above.
         </div>
     </div>
+</div>
 
-    <!-- MORE -->
-    <div id="section-more" class="section-panel hidden">
-        <h2><span class="icon">⋯</span> More</h2>
-        <div class="more-grid">
-            <div class="more-card">
-                <span class="emoji">🗺️</span>
-                <div class="title">Trail Map</div>
-                <div class="desc">Explore nearby hiking routes</div>
-            </div>
-            <div class="more-card">
-                <span class="emoji">🌤️</span>
-                <div class="title">Weather</div>
-                <div class="desc">Local forecast & conditions</div>
-            </div>
-            <div class="more-card">
-                <span class="emoji">📅</span>
-                <div class="title">Reservations</div>
-                <div class="desc">Book your next stay</div>
-            </div>
-            <div class="more-card">
-                <span class="emoji">🔧</span>
-                <div class="title">Maintenance</div>
-                <div class="desc">Report an issue</div>
-            </div>
+<!-- ===== MORE ===== -->
+<div id="section-more" class="section-panel hidden">
+    <h2><span>⋯</span> More</h2>
+    <div class="more-grid">
+        <div class="more-card">
+            <span class="emoji">🗺️</span>
+            <div class="mtitle">Trail Map</div>
+            <div class="mdesc">Explore nearby hiking routes</div>
+        </div>
+        <div class="more-card">
+            <span class="emoji">🌤️</span>
+            <div class="mtitle">Weather</div>
+            <div class="mdesc">Local forecast &amp; conditions</div>
+        </div>
+        <div class="more-card">
+            <span class="emoji">📅</span>
+            <div class="mtitle">Reservations</div>
+            <div class="mdesc">Book your next stay</div>
+        </div>
+        <div class="more-card">
+            <span class="emoji">🔧</span>
+            <div class="mtitle">Maintenance</div>
+            <div class="mdesc">Report an issue</div>
         </div>
     </div>
+</div>
 
 </main>
 
-<footer>© RusLyn Pine Cabin &nbsp;·&nbsp; All rights reserved</footer>
-
-<div class="toast" id="toast">✓ Checklist submitted successfully!</div>
+<footer>© RusLyn Pines Cabin &nbsp;·&nbsp; Margetts Family Retreat &nbsp;·&nbsp; All rights reserved</footer>
+<div class="toast" id="toast"></div>
 
 <script>
+    let seasons = { open: null, close: null };
+
     function showSection(id) {
         document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
         document.getElementById('section-' + id).classList.remove('hidden');
-        document.querySelectorAll('nav a').forEach((a, i) => {
+        document.querySelectorAll('nav a').forEach(a => {
             a.classList.toggle('active', a.getAttribute('onclick').includes("'" + id + "'"));
         });
     }
 
-    function toggleCheck(item) {
+    function setSeason(section, season) {
+        seasons[section] = season;
+
+        document.getElementById(section + '-summer-btn').className = 'season-btn' + (season === 'summer' ? ' active-summer' : '');
+        document.getElementById(section + '-winter-btn').className = 'season-btn' + (season === 'winter' ? ' active-winter' : '');
+        document.getElementById(section + '-season-prompt').style.display = 'none';
+        document.getElementById(section + '-body').style.display = 'block';
+
+        const checklist = document.getElementById(section + '-checklist');
+        if (!checklist) return;
+
+        checklist.querySelectorAll('.checklist-item').forEach(item => {
+            const s = item.getAttribute('data-season');
+            const show = s === 'both' || s === season;
+            item.classList.toggle('hidden-item', !show);
+            if (!show) {
+                item.querySelector('input[type="checkbox"]').checked = false;
+                item.classList.remove('checked');
+            }
+        });
+
+        updateProgress(section);
+    }
+
+    function toggleCheck(item, section) {
         const cb = item.querySelector('input[type="checkbox"]');
         cb.checked = !cb.checked;
         item.classList.toggle('checked', cb.checked);
-        updateProgress(item.closest('.checklist'));
+        updateProgress(section);
     }
 
-    function updateProgress(checklist) {
+    function updateProgress(section) {
+        const checklist = document.getElementById(section + '-checklist');
         if (!checklist) return;
-        const items = checklist.querySelectorAll('input[type="checkbox"]');
-        const checked = checklist.querySelectorAll('input[type="checkbox"]:checked');
-        const total = items.length;
-        const done = checked.length;
+        const visible = [...checklist.querySelectorAll('.checklist-item:not(.hidden-item)')];
+        const total = visible.length;
+        const done = visible.filter(i => i.querySelector('input[type="checkbox"]').checked).length;
         const pct = total ? (done / total * 100) : 0;
-
-        const isOpen = checklist.id === 'open-checklist';
-        const prefix = isOpen ? 'open' : 'close';
-        const fill = document.getElementById(prefix + '-progress');
-        const label = document.getElementById(prefix + '-count');
+        const fill = document.getElementById(section + '-progress');
+        const label = document.getElementById(section + '-count');
         if (fill) fill.style.width = pct + '%';
         if (label) label.textContent = done + ' / ' + total;
     }
 
-    function submitChecklist(type) {
-        const sig = document.getElementById(type + '-sig').value.trim();
-        if (!sig) {
-            document.getElementById(type + '-sig').focus();
-            document.getElementById(type + '-sig').style.borderColor = '#c0392b';
-            setTimeout(() => document.getElementById(type + '-sig').style.borderColor = '', 1500);
+    function toggleYN(btn, val, notesId) {
+        const group = btn.closest('.yn-btns');
+        group.querySelectorAll('.yn-btn').forEach(b => b.className = 'yn-btn');
+        btn.classList.add(val === 'yes' ? 'yes-active' : 'no-active');
+        if (notesId) {
+            document.getElementById(notesId).style.display = val === 'no' ? 'block' : 'none';
+        }
+    }
+
+    function submitReservation() {
+        const name = document.getElementById('res-name').value.trim();
+        if (!name) {
+            document.getElementById('res-name').focus();
+            document.getElementById('res-name').style.borderColor = '#c0392b';
+            setTimeout(() => document.getElementById('res-name').style.borderColor = '', 1500);
+            showToast('⚠️ Please enter the reservation holder name.');
             return;
         }
-        showToast('✓ ' + (type === 'open' ? 'Opening' : 'Closing') + ' report submitted by ' + sig + '!');
+        showToast('✓ Reservation info saved for ' + name + '!');
+    }
+
+    function submitChecklist(type) {
+        if (!seasons[type]) { showToast('⚠️ Please select a season first.'); return; }
+        const nameField = document.getElementById(type === 'open' ? 'open-name' : 'close-sig');
+        if (!nameField.value.trim()) {
+            nameField.focus();
+            nameField.style.borderColor = '#c0392b';
+            setTimeout(() => nameField.style.borderColor = '', 1500);
+            showToast('⚠️ Please enter your name.');
+            return;
+        }
+        showToast('✓ ' + (type === 'open' ? 'Opening' : 'Closing') + ' report submitted by ' + nameField.value.trim() + '!');
     }
 
     function showToast(msg) {
         const t = document.getElementById('toast');
         t.textContent = msg;
         t.classList.add('show');
-        setTimeout(() => t.classList.remove('show'), 3200);
+        setTimeout(() => t.classList.remove('show'), 3500);
     }
 </script>
 </body>
