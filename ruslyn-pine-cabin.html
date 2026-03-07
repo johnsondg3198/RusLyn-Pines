@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RusLyn Pine Cabin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pine: #2d4a2d;
+            --bark: #6b4c2a;
+            --cream: #f5f0e8;
+            --amber: #c8842a;
+            --smoke: #e8e2d6;
+            --shadow: rgba(45,74,45,0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--cream);
+            background-image:
+                radial-gradient(ellipse at 10% 20%, rgba(107,76,42,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 90% 80%, rgba(45,74,45,0.07) 0%, transparent 60%);
+            min-height: 100vh;
+            color: #2c2416;
+        }
+
+        /* Header */
+        header {
+            background: var(--pine);
+            background-image: linear-gradient(135deg, #1e3420 0%, #2d4a2d 50%, #3a5c3a 100%);
+            padding: 40px 20px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cabin-icon {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 10px;
+            animation: sway 4s ease-in-out infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--cream);
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            color: rgba(245,240,232,0.7);
+            font-size: 0.9rem;
+            margin-top: 6px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* Nav */
+        nav {
+            background: var(--bark);
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+            box-shadow: 0 3px 12px var(--shadow);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--cream);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            transition: background 0.2s, color 0.2s;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(0,0,0,0.15);
+            border-bottom-color: var(--amber);
+            color: #fff;
+        }
+
+        /* Main */
+        main {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+        }
+
+        /* Section panels */
+        .section-panel {
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 16px var(--shadow), 0 1px 3px rgba(0,0,0,0.06);
+            padding: 32px 36px;
+            margin-bottom: 24px;
+            border-top: 4px solid var(--pine);
+            animation: fadeUp 0.5s ease both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-panel.hidden { display: none; }
+
+        .section-panel h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--pine);
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-panel h2 .icon { font-size: 1.3rem; }
+
+        /* Checklist */
+        .checklist { margin-bottom: 24px; }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            border: 1.5px solid var(--smoke);
+            background: var(--cream);
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s, transform 0.1s;
+            user-select: none;
+        }
+
+        .checklist-item:hover {
+            border-color: var(--pine);
+            background: #eef5ee;
+            transform: translateX(3px);
+        }
+
+        .checklist-item.checked {
+            background: #eef5ee;
+            border-color: var(--pine);
+        }
+
+        .checklist-item.checked label {
+            text-decoration: line-through;
+            color: #7a9a7a;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #aab8aa;
+            border-radius: 3px;
+            margin-right: 14px;
+            flex-shrink: 0;
+            cursor: pointer;
+            background: white;
+            transition: background 0.2s, border-color 0.2s;
+            position: relative;
+        }
+
+        .checklist-item input[type="checkbox"]:checked {
+            background: var(--pine);
+            border-color: var(--pine);
+        }
+
+        .checklist-item input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 5px; top: 2px;
+            width: 6px; height: 10px;
+            border: 2px solid white;
+            border-top: none; border-left: none;
+            transform: rotate(45deg);
+        }
+
+        .checklist-item label {
+            font-size: 0.97rem;
+            cursor: pointer;
+            color: #2c2416;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        /* Progress bar */
+        .progress-wrap {
+            margin-bottom: 24px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #7a6a50;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 7px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--smoke);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--pine), #4a8a4a);
+            border-radius: 4px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        /* Signature */
+        .signature-row {
+            margin-bottom: 22px;
+        }
+
+        .signature-row label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #7a6a50;
+            margin-bottom: 7px;
+        }
+
+        .signature-row input[type="text"] {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid var(--smoke);
+            border-radius: 4px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            color: #2c2416;
+            background: var(--cream);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .signature-row input[type="text"]:focus {
+            outline: none;
+            border-color: var(--pine);
+            box-shadow: 0 0 0 3px rgba(45,74,45,0.12);
+        }
+
+        /* Buttons */
+        .submit-btn {
+            background: var(--pine);
+            color: white;
+            padding: 13px 32px;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(45,74,45,0.2);
+        }
+
+        .submit-btn:hover {
+            background: #1e3420;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(45,74,45,0.28);
+        }
+
+        .submit-btn:active { transform: translateY(0); }
+
+        /* Rules */
+        .rules-list { list-style: none; }
+
+        .rules-list li {
+            padding: 11px 0;
+            border-bottom: 1px solid var(--smoke);
+            font-size: 0.97rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .rules-list li:last-child { border-bottom: none; }
+
+        .rules-list li::before {
+            content: '🌲';
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Contact */
+        .contact-card {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            background: var(--cream);
+            border-radius: 4px;
+            border: 1.5px solid var(--smoke);
+        }
+
+        .contact-row .icon { font-size: 1.4rem; flex-shrink: 0; }
+
+        .contact-row .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #7a6a50;
+            font-weight: 700;
+        }
+
+        .contact-row .value {
+            font-size: 0.97rem;
+            color: var(--pine);
+            font-weight: 400;
+        }
+
+        /* More */
+        .more-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .more-card {
+            background: var(--cream);
+            border: 1.5px solid var(--smoke);
+            border-radius: 4px;
+            padding: 18px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s, transform 0.15s, background 0.2s;
+        }
+
+        .more-card:hover {
+            border-color: var(--pine);
+            background: #eef5ee;
+            transform: translateY(-2px);
+        }
+
+        .more-card .emoji { font-size: 2rem; display: block; margin-bottom: 8px; }
+        .more-card .title { font-weight: 700; font-size: 0.9rem; color: var(--pine); }
+        .more-card .desc { font-size: 0.8rem; color: #7a6a50; margin-top: 3px; }
+
+        /* Success toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: var(--pine);
+            color: white;
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            opacity: 0;
+            z-index: 999;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.78rem;
+            color: #a89878;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 480px) {
+            .section-panel { padding: 22px 18px; }
+            nav a { font-size: 0.75rem; padding: 12px 12px; }
+            .more-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <span class="cabin-icon">🏕️</span>
+    <h1>RusLyn Pine Cabin</h1>
+    <p>Wilderness Retreat &nbsp;·&nbsp; Member Portal</p>
+</header>
+
+<nav>
+    <a href="#" onclick="showSection('open')" class="active">🔓 Open Cabin</a>
+    <a href="#" onclick="showSection('close')">🔒 Close Cabin</a>
+    <a href="#" onclick="showSection('rules')">📋 Rules</a>
+    <a href="#" onclick="showSection('contact')">📞 Contact</a>
+    <a href="#" onclick="showSection('more')">⋯ More</a>
+</nav>
+
+<main>
+
+    <!-- OPEN CABIN -->
+    <div id="section-open" class="section-panel">
+        <h2><span class="icon">🔓</span> Opening Checklist</h2>
+        <div class="progress-wrap">
+            <div class="progress-label">
+                <span>Progress</span>
+                <span id="open-count">0 / 5</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="open-progress"></div></div>
+        </div>
+        <div class="checklist" id="open-checklist">
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="water"><label for="water">Turn on the Water</label>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="power"><label for="power">Turn on the Power</label>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="windows"><label for="windows">Unlock Windows and Doors</label>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="heating"><label for="heating">Check Heating System</label>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="cleaning"><label for="cleaning">Inspect and Clean Common Areas</label>
+            </div>
+        </div>
+        <div class="signature-row">
+            <label for="open-sig">Signature</label>
+            <input type="text" id="open-sig" placeholder="Enter your full name">
+        </div>
+        <button class="submit-btn" onclick="submitChecklist('open')">Submit Opening Report</button>
+    </div>
+
+    <!-- CLOSE CABIN -->
+    <div id="section-close" class="section-panel hidden">
+        <h2><span class="icon">🔒</span> Closing Checklist</h2>
+        <div class="progress-wrap">
+            <div class="progress-label">
+                <span>Progress</span>
+                <span id="close-count">0 / 6</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="close-progress"></div></div>
+        </div>
+        <div class="checklist" id="close-checklist">
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c-water"><label for="c-water">Shut Off Water Supply</label>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c-power"><label for="c-power">Turn Off All Power</label>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c-windows"><label for="c-windows">Lock All Windows and Doors</label>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c-trash"><label for="c-trash">Remove All Trash</label>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c-food"><label for="c-food">Clear and Clean Refrigerator</label>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c-heating"><label for="c-heating">Turn Off Heating / Propane</label>
+            </div>
+        </div>
+        <div class="signature-row">
+            <label for="close-sig">Signature</label>
+            <input type="text" id="close-sig" placeholder="Enter your full name">
+        </div>
+        <button class="submit-btn" onclick="submitChecklist('close')">Submit Closing Report</button>
+    </div>
+
+    <!-- RULES -->
+    <div id="section-rules" class="section-panel hidden">
+        <h2><span class="icon">📋</span> Cabin Rules</h2>
+        <ul class="rules-list">
+            <li>Respect quiet hours between 10 PM and 8 AM.</li>
+            <li>No smoking inside the cabin at any time.</li>
+            <li>Pets are welcome but must be kept on a leash outdoors.</li>
+            <li>Leave the cabin cleaner than you found it.</li>
+            <li>Report any damages to the owner immediately.</li>
+            <li>Do not cut live trees or damage vegetation.</li>
+            <li>Campfires must be fully extinguished before sleeping.</li>
+            <li>Maximum occupancy: 8 people.</li>
+        </ul>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="section-contact" class="section-panel hidden">
+        <h2><span class="icon">📞</span> Contact Owner</h2>
+        <div class="contact-card">
+            <div class="contact-row">
+                <span class="icon">👤</span>
+                <div><div class="label">Owner</div><div class="value">RusLyn Cabin Management</div></div>
+            </div>
+            <div class="contact-row">
+                <span class="icon">📱</span>
+                <div><div class="label">Phone</div><div class="value">(555) 867-5309</div></div>
+            </div>
+            <div class="contact-row">
+                <span class="icon">✉️</span>
+                <div><div class="label">Email</div><div class="value">owner@ruslyncabin.com</div></div>
+            </div>
+            <div class="contact-row">
+                <span class="icon">🕐</span>
+                <div><div class="label">Response Hours</div><div class="value">Mon – Fri, 9 AM – 6 PM</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MORE -->
+    <div id="section-more" class="section-panel hidden">
+        <h2><span class="icon">⋯</span> More</h2>
+        <div class="more-grid">
+            <div class="more-card">
+                <span class="emoji">🗺️</span>
+                <div class="title">Trail Map</div>
+                <div class="desc">Explore nearby hiking routes</div>
+            </div>
+            <div class="more-card">
+                <span class="emoji">🌤️</span>
+                <div class="title">Weather</div>
+                <div class="desc">Local forecast & conditions</div>
+            </div>
+            <div class="more-card">
+                <span class="emoji">📅</span>
+                <div class="title">Reservations</div>
+                <div class="desc">Book your next stay</div>
+            </div>
+            <div class="more-card">
+                <span class="emoji">🔧</span>
+                <div class="title">Maintenance</div>
+                <div class="desc">Report an issue</div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer>© RusLyn Pine Cabin &nbsp;·&nbsp; All rights reserved</footer>
+
+<div class="toast" id="toast">✓ Checklist submitted successfully!</div>
+
+<script>
+    function showSection(id) {
+        document.querySelectorAll('.section-panel').forEach(p => p.classList.add('hidden'));
+        document.getElementById('section-' + id).classList.remove('hidden');
+        document.querySelectorAll('nav a').forEach((a, i) => {
+            a.classList.toggle('active', a.getAttribute('onclick').includes("'" + id + "'"));
+        });
+    }
+
+    function toggleCheck(item) {
+        const cb = item.querySelector('input[type="checkbox"]');
+        cb.checked = !cb.checked;
+        item.classList.toggle('checked', cb.checked);
+        updateProgress(item.closest('.checklist'));
+    }
+
+    function updateProgress(checklist) {
+        if (!checklist) return;
+        const items = checklist.querySelectorAll('input[type="checkbox"]');
+        const checked = checklist.querySelectorAll('input[type="checkbox"]:checked');
+        const total = items.length;
+        const done = checked.length;
+        const pct = total ? (done / total * 100) : 0;
+
+        const isOpen = checklist.id === 'open-checklist';
+        const prefix = isOpen ? 'open' : 'close';
+        const fill = document.getElementById(prefix + '-progress');
+        const label = document.getElementById(prefix + '-count');
+        if (fill) fill.style.width = pct + '%';
+        if (label) label.textContent = done + ' / ' + total;
+    }
+
+    function submitChecklist(type) {
+        const sig = document.getElementById(type + '-sig').value.trim();
+        if (!sig) {
+            document.getElementById(type + '-sig').focus();
+            document.getElementById(type + '-sig').style.borderColor = '#c0392b';
+            setTimeout(() => document.getElementById(type + '-sig').style.borderColor = '', 1500);
+            return;
+        }
+        showToast('✓ ' + (type === 'open' ? 'Opening' : 'Closing') + ' report submitted by ' + sig + '!');
+    }
+
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 3200);
+    }
+</script>
+</body>
+</html>
