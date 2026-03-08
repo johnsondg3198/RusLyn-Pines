@@ -865,27 +865,37 @@
 <!-- ===== MORE ===== -->
 <div id="section-more" class="section-panel hidden">
     <h2><span>⋯</span> More</h2>
-    <div class="more-grid">
-        <div class="more-card">
-            <span class="emoji">🗺️</span>
-            <div class="mtitle">Trail Map</div>
-            <div class="mdesc">Explore nearby hiking routes</div>
+    <div class="step-header">🚨 Emergency Information</div>
+    <div class="contact-card" style="margin-top:12px;">
+        <div class="contact-row">
+            <span class="icon">🚑</span>
+            <div>
+                <div class="clabel">Emergency</div>
+                <div class="cvalue">📞 911</div>
+            </div>
         </div>
-        <div class="more-card">
-            <span class="emoji">🌤️</span>
-            <div class="mtitle">Weather</div>
-            <div class="mdesc">Local forecast &amp; conditions</div>
+        <div class="contact-row">
+            <span class="icon">🏠</span>
+            <div>
+                <div class="clabel">Cabin Address</div>
+                <div class="cvalue">6211 Daisy Meadow Lane<br>Kamas, UT 84036</div>
+            </div>
         </div>
-        <div class="more-card">
-            <span class="emoji">📅</span>
-            <div class="mtitle">Reservations</div>
-            <div class="mdesc">Book your next stay</div>
+        <div class="contact-row">
+            <span class="icon">🏥</span>
+            <div>
+                <div class="clabel">Closest Hospital — Intermountain Health</div>
+                <div class="cvalue">900 Round Valley Dr<br>Park City, UT 84060</div>
+            </div>
         </div>
-        <div class="more-card">
-            <span class="emoji">🔧</span>
-            <div class="mtitle">Maintenance</div>
-            <div class="mdesc">Report an issue</div>
-        </div>
+    </div>
+
+    <div class="step-header" style="margin-top:24px;">🌤️ Weather</div>
+    <div style="margin-top:12px; border-radius:4px; overflow:hidden;">
+        <a class="weatherwidget-io" href="https://forecast7.com/en/40d58n111d23/woodland/?unit=us" data-label_1="WOODLAND" data-label_2="WEATHER" data-theme="original">WOODLAND WEATHER</a>
+        <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+        </script>
     </div>
 
     <div class="step-header" style="margin-top:24px;">📞 Contacts</div>
@@ -897,9 +907,6 @@
         <div class="contact-row">
             <span class="icon">👤</span>
             <div><div class="clabel">Russ Margetts</div><div class="cvalue">📱 801-891-3100</div></div>
-        </div>
-        <div class="notice-box" style="margin-top:4px;">
-            Text arrival damage photos and departure checklist photos to both contacts above.
         </div>
     </div>
 </div>
